@@ -1,5 +1,5 @@
 import React from "react";
-import { PokedexContainer } from "./PokedexStyle";
+import { PokedexContainer } from "./PokedexPageStyle";
 
 const Pokedex = () => {
   return (

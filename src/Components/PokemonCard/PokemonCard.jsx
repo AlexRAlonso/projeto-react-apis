@@ -1,14 +1,15 @@
 import React from "react";
 import { PokemonCardContainer } from "./PokemonCardStyle";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { goToDetail } from "../../Routes/coordinator";
 
 function PokemonCard() {
-
+  const navigate = useNavigate();
 
   return (
     <PokemonCardContainer>
       <p>Eu sou um pokémon!</p>
-      <Link className = "details-link" to="/detail/:id">Detalhes</Link>
+      <button className="details-button" onClick={() => {goToDetail(navigate)}}>Detalhes</button>
     </PokemonCardContainer>
   );
 }

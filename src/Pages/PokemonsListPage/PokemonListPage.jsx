@@ -1,5 +1,5 @@
 import React from "react";
-import { PokemonListContainer } from "./PokemonListStyle";
+import { PokemonListContainer } from "./PokemonListPageStyle";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
 
 const PokemonList = () => {

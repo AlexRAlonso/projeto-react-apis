@@ -1,5 +1,5 @@
 import React from "react";
-import { DetailContainer } from "./PokemonDetailStyle";
+import { DetailContainer } from "./PokemonDetailPageStyle";
 
 const PokemonDetail = () => {
   return (
