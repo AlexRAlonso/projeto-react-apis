@@ -28,10 +28,31 @@ export const PokemonCardContainer = styled.div`
   
   .details-button {
     cursor: pointer;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
   }
 
   .capture-button {
     cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    padding: 8px;
+    width: 120px;
+    border: none;
+  }
+
+  .free-button {
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ff6262;
+    color: white;
+    padding: 8px;
+    width: 120px;
+    border: none;
   }
 
   .infos {

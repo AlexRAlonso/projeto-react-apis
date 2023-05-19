@@ -8,7 +8,7 @@ const PokemonList = (props) => {
     pokeList.filter(
       (pokemonInList) =>
       !pokedex.find(
-        (captured) => pokemonInList.name === captured.name
+        (captured) => pokemonInList.url === captured.url
       ) 
     );
 
