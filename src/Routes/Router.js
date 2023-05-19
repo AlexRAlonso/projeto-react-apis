@@ -26,42 +26,24 @@ export default function Router() {
     }
   };
 
-  const capture = (capturee) => {
-    const capturedCheck = pokedex.find(
-      (captured) => captured.name === capturee.name
-    );
-
-    if (!capturedCheck) {
-      const updatedPokedex = [...pokedex, capturee];
-      setPokedex(updatedPokedex);
-    }
-  }
-
-  const free = (toBeFreed) => {
-    const updatedPokedex = pokedex.filter(
-      (captured) => captured.name !== toBeFreed.name
-    );
-
-    setPokedex(updatedPokedex);
-  }
-
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route element={<PokemonListPage 
-          pokeList={pokeList}
-          capture={capture}
-          pokedex={pokedex}          
-          /> 
-          } path="/"
-          />
-        <Route element={<PokedexPage 
-          pokedex={pokedex}
-          free={free}
-          />
-          } path="/pokedex"
-          />
+        <Route
+          element={
+            <PokemonListPage
+              pokeList={pokeList}
+              pokedex={pokedex}
+              setPokedex={setPokedex}
+            />
+          }
+          path="/"
+        />
+        <Route
+          element={<PokedexPage pokedex={pokedex} setPokedex={setPokedex} />}
+          path="/pokedex"
+        />
         <Route element={<PokemonDetailPage />} path="/detail/:id" />
         <Route element={<ErrorPage />} path="*" />
       </Routes>
