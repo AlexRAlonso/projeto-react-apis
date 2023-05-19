@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { HeaderContainer } from "./HeaderStyle";
 import { goToList, goToPokedex } from "../../Routes/coordinator";
+import pokelogo from "../../Assets/pokelogo.png"
 
 function Header() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Header() {
       </div>
       <div className="logo">
         <img
-          src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png"
+          src={pokelogo}
           alt="Logo Pokémon"
           width={150}
           height={50}

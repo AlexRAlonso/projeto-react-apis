@@ -1,17 +1,30 @@
-import React from "react";
 import { PokemonListContainer } from "./PokemonListPageStyle";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
 
-const PokemonList = () => {
+const PokemonList = (props) => {
+  const { pokeList, capture, pokedex } = props;
+  
+  const filteredPokelist = () =>
+    pokeList.filter(
+      (pokemonInList) =>
+      !pokedex.find(
+        (captured) => pokemonInList.name === captured.name
+      ) 
+    );
+
   return (
     <PokemonListContainer>
       <div>
-        <h3>Todos os Pokémons</h3>
+        <h2>Todos os Pokémons</h2>
       </div>
       <div className="pokemons-list">
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
+        {filteredPokelist().map((pokemon) => (
+          <PokemonCard
+            key={pokemon.name}
+            url={pokemon.url}
+            capture={capture}
+          />
+        ))}
       </div>
     </PokemonListContainer>
   );

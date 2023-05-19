@@ -1,16 +1,25 @@
-import React from "react";
-import { PokedexContainer } from "./PokedexPageStyle";
+import React, { useContext } from "react";
+import PokemonCard from "../../Components/PokemonCard/PokemonCard";
+import { PokemonListContainer } from "../PokemonsListPage/PokemonListPageStyle";
 
-const Pokedex = () => {
+const Pokedex = (props) => {
+  const { pokedex, free } = props;
+
   return (
-    <PokedexContainer>
+    <PokemonListContainer>
       <div>
-        <h3>Meus Pokémons</h3>
+        <h2>Meus Pokémons</h2>
       </div>
       <div className="pokemons-list">
-
+        {pokedex?.map((pokemon) => (
+          <PokemonCard
+            key={pokemon.name}
+            url={pokemon.url}
+            free={free}
+          />
+        ))}
       </div>
-    </PokedexContainer>
+    </PokemonListContainer>
   );
 };
 

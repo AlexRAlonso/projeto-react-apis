@@ -5,6 +5,7 @@ export const PokemonListContainer = styled.div`
   color: white;
   padding: 2vw;
   min-height: 85vh;
+  font-size: 100%;
 
   .pokemons-list {
     margin-top: 4vh;
@@ -13,4 +14,24 @@ export const PokemonListContainer = styled.div`
     justify-content: flex-start;
     gap: 1vw;
   };
+
+  .green {
+    background-color:#729f92;
+  }
+
+  .yellow, .white {
+    background-color:#76a866;
+  }
+
+  .red {
+    background-color:#eaab7d;
+  }
+
+  .blue {
+    background-color:#71c3ff;
+  }
+
+  .brown, .purple {
+    background-color:#bf9762;
+  }
 `;
