@@ -8,29 +8,35 @@ function PopUp(props) {
 
   return (
     <PopUpContainer>
-      <div>
-        {location.pathname === "/" && (
-          <div className="popup">
-            <div>
-              <h1>Gotcha!</h1>
+      <div className="inner-popup-container">
+        <div>
+          {location.pathname === "/" && (
+            <div className="popup">
+              <div>
+                <h1>Gotcha!</h1>
+              </div>
+              <div>
+                <p>O pokémon foi adicionado à Pokédex</p>
+              </div>
+              <button className="popup-button" onClick={() => setPopUp(false)}>
+                Ok!
+              </button>
             </div>
-            <div>
-              <p>O pokémon foi adicionado à Pokédex</p>
+          )}
+          {location.pathname !== "/" && (
+            <div className="popup">
+              <div>
+                <h1>Adeus!</h1>
+              </div>
+              <div>
+                <p>O pokémon foi devolvido à natureza</p>
+              </div>
+              <button className="popup-button" onClick={() => setPopUp(false)}>
+                Ok!
+              </button>
             </div>
-            <button onClick={() => setPopUp(false)}>Ok!</button>
-          </div>
-        )}
-        {location.pathname !== "/" && (
-          <div className="popup">
-            <div>
-              <h1>Adeus!</h1>
-            </div>
-            <div>
-              <p>O pokémon foi devolvido à natureza</p>
-            </div>
-            <button onClick={() => setPopUp(false)}>Ok!</button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </PopUpContainer>
   );

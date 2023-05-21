@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { DetailContainer } from "./PokemonDetailPageStyle";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { BASE_URL } from "../../Constants/url";
+import PokemonStat from "../../Components/PokemonStats/PokemonStat";
+import PokemonType from "../../Components/PokemonType/PokemonType";
 
 const PokemonDetail = () => {
   const { id } = useParams();
@@ -10,45 +10,77 @@ const PokemonDetail = () => {
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    fetchPokemon();
+    const savedPokeList = localStorage.getItem("pokeList");
+    if (savedPokeList) {
+      const pokeList = JSON.parse(savedPokeList);
+      const foundPokemon = pokeList.find(
+        (pokemon) => parseInt(pokemon.id) === parseInt(id)
+      );
+      if (foundPokemon) {
+        setPokemon(foundPokemon);
+      }
+    }
   }, []);
 
-  const fetchPokemon = async () => {
-    try {
-      const pokemonResponse = await axios.get(`${BASE_URL}/${id}`);
-      setPokemon({
-        id: forceLeadingZeros(pokemonResponse.data.id),
-        name: getCapitalizedName(pokemonResponse.data.name),
-        spriteFront: pokemonResponse.data.sprites?.front_default,
-        spriteBack: pokemonResponse.data.sprites?.back_default,
-        types: pokemonResponse.data.types.map(
-          (data) => data.type
-        ),
-        moves: pokemonResponse.data.moves
-      });
-            
-    } catch (error) {
-      console.log("Não achei nenhum pokémon!");
-      console.log(error.response);
-    }
-  };
-
-  const getCapitalizedName = (name) => {
-    return name.charAt(0).toUpperCase() +
-      name.slice(1);
-  }
-
-  function forceLeadingZeros(id) {
-    return String(id).padStart(3, '0');
-  }
-  
   return (
     <DetailContainer>
       <div>
-        <h3>Detalhes do Pokémon</h3>
+        <h1>Detalhes do Pokémon</h1>
       </div>
+
       <div className="pokemon-detail">
-        <p>{pokemon.name}</p>
+        <div className="detail-sprites">
+          <div>
+            <img className="detail-sprite" src={pokemon.spriteFront} />
+          </div>
+          <div>
+            <img className="detail-sprite" src={pokemon.spriteBack} />
+          </div>
+        </div>
+
+        <div className="base-stats">
+          <h2>Base Stats</h2>
+          {pokemon.stats?.map((stat) => {
+            return (
+              <PokemonStat
+                key={stat.name}
+                name={stat.name}
+                value={stat.value}
+              />
+            );
+          })}
+        </div>
+
+        <div className="cardtop-and-moves">
+          <div className="cardtop">
+            <div className="infos">
+              <p>#{pokemon.id}</p>
+              <h2>{pokemon.name}</h2>
+              <div className="types">
+                {pokemon.types?.map((type) => (
+                  <PokemonType key={type.name} url={type.url} />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <img className="sprite" src={pokemon.sprite} />
+            </div>
+          </div>
+
+          <div className="moves">
+            <div>
+              <h2>Moves</h2>
+            </div>
+            <div className="moves-list">
+              {pokemon.moves?.slice(0, 5).map((move) => (
+                <p key={move.key} className="move-name">
+                  {move.name}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </DetailContainer>
   );

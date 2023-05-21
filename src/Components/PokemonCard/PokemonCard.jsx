@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PokemonCardContainer } from "./PokemonCardStyle";
 import { useLocation, useNavigate } from "react-router-dom";
 import { goToDetail } from "../../Routes/coordinator";
-import axios from "axios";
 import PokemonType from "../PokemonType/PokemonType";
 
 function PokemonCard(props) {
-  const { url, capture, free } = props;
+  const { capture, free, pokemon } = props;
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [pokemon, setPokemon] = useState({});
+  //const [pokemon, setPokemon] = useState({});
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetchPokemon();
   }, []);
 
@@ -42,7 +41,7 @@ function PokemonCard(props) {
 
   function forceLeadingZeros(id) {
     return String(id).padStart(3, "0");
-  }
+  }*/
 
   return (
     <PokemonCardContainer className={pokemon.color}>

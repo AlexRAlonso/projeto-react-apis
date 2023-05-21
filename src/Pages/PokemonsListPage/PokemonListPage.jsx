@@ -1,17 +1,19 @@
 import { PokemonListContainer } from "./PokemonListPageStyle";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
-import PopUp from "../../Components/PopUp/PopUp";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { PokemonContext } from "../../Contexts/PokemonContext";
+import PopUp from "../../Components/PopUp/PopUp"
 
-const PokemonList = (props) => {
+const PokemonList = () => {
   const [popUp, setPopUp] = useState(false);
-  const { pokeList, pokedex, setPokedex } = props;
+  const { pokeList, pokedex, setPokedex } = useContext(PokemonContext)
 
-  const filteredPokelist = () =>
-    pokeList.filter(
+  const filteredPokelist = () => {
+    return pokeList.filter(
       (pokemonInList) =>
-        !pokedex.find((captured) => pokemonInList.url === captured.url)
+        !pokedex.find((captured) => pokemonInList.id === captured.id)
     );
+  }
 
   const capture = (capturee) => {
     const capturedCheck = pokedex.find(
@@ -33,7 +35,7 @@ const PokemonList = (props) => {
       </div>
       <div className="pokemons-list">
         {filteredPokelist().map((pokemon) => (
-          <PokemonCard key={pokemon.name} url={pokemon.url} capture={capture} />
+          <PokemonCard key={pokemon.name} pokemon={pokemon} capture={capture} />
         ))}
       </div>
     </PokemonListContainer>

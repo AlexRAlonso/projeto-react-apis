@@ -20,7 +20,7 @@ function PokemonType(props) {
       });
     } catch (error) {
       console.log("Não achei nenhum tipo!");
-      console.log(error.response);
+      //console.log(error);
     }
   };
 

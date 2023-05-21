@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
 import { PokemonListContainer } from "../PokemonsListPage/PokemonListPageStyle";
-import PopUp from "../../Components/PopUp/PopUp";
+import { PokemonContext } from "../../Contexts/PokemonContext";
+import PopUp from "../../Components/PopUp/PopUp"
 
-const Pokedex = (props) => {
+const Pokedex = () => {
   const [popUp, setPopUp] = useState(false);
-  const { pokedex, setPokedex } = props;
+  const { pokedex, setPokedex } = useContext(PokemonContext);
 
   const free = (toBeFreed) => {
     const updatedPokedex = pokedex.filter(
@@ -26,7 +27,7 @@ const Pokedex = (props) => {
         {pokedex?.map((pokemon) => (
           <PokemonCard
             key={pokemon.name}
-            url={pokemon.url}
+            pokemon={pokemon}
             free={free}
           />
         ))}
